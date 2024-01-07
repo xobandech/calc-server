@@ -17,6 +17,7 @@ const User = mongoose.model("User", userSchema);
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
+  perMessageDeflate: false,
   cors: {
     origin: "*",
   },
