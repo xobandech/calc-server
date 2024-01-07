@@ -74,6 +74,7 @@ app.post('/api/project/rfid', async (req, res) => {
   res.json({ accessGranted: user ? true : false });
 });
 
+const port = process.env.port || 8080
 // Start server
 const start = async () => {
   await mongoose.connect(`mongodb+srv://oleksandrshtefan:xPIeAy1zXoaxxbpn@cluster0.uowkmor.mongodb.net/?retryWrites=true&w=majority`)
@@ -82,7 +83,7 @@ const start = async () => {
   //   key: "01 9D 0C A1"
   // });
   try {
-    server.listen(3001, () => {
+    server.listen(port, () => {
       console.log("Server is listening on port 3001");
     });
   } catch (e) {
