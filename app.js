@@ -46,8 +46,9 @@ app.post('/api/project', async (req, res) => {
 });
 
 app.get('/api/project', async (req, res) => {
-  const { h, t, f, hic, hif } = req.params;
-  console.log(req.params)
+  const { h, t, f, hic, hif } = req.query;
+  console.log(req.query)
+  console.log(req.url)
   io.emit("project_data", { h, t, f, hic, hif });
   lastData["dht"] = { h, t, f, hic, hif }
   console.log('DHT')
