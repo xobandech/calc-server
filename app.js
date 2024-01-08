@@ -18,6 +18,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   perMessageDeflate: false,
+  path: "/socket",
   cors: {
     origin: "*",
   },
@@ -38,6 +39,15 @@ io.on("connection", (socket) => {
 
 app.post('/api/project', async (req, res) => {
   const { h, t, f, hic, hif } = req.body;
+  io.emit("project_data", { h, t, f, hic, hif });
+  lastData["dht"] = { h, t, f, hic, hif }
+  console.log('DHT')
+  res.json({ msg: "Data received" });
+});
+
+app.get('/api/project', async (req, res) => {
+  const { h, t, f, hic, hif } = req.params;
+  console.log(req.params)
   io.emit("project_data", { h, t, f, hic, hif });
   lastData["dht"] = { h, t, f, hic, hif }
   console.log('DHT')
