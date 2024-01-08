@@ -18,7 +18,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   perMessageDeflate: false,
-  path: "/socket",
+  // path: "/socket",
   cors: {
     origin: "*",
   },
